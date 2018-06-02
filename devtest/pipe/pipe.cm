@@ -1,0 +1,124 @@
+cmake_minimum_required(VERSION 3.5)
+
+## --------------------------------------------------------------------------------------- ##
+## #################################################################### ##
+## --------------------------------------------------------------------------------------- ##
+set(PROJ_NAME pipeclient)
+set(INC_DIR_LIST
+    ${DEVTESTROOT}/pipe
+	)
+set(SRC_LIST
+    ${DEVTESTROOT}/pipe/pipeclient.cpp
+	)
+set(COMPILEOPT -std=c++11)
+set(CFLAGS )
+set(CXXFLAGS )
+set(LINK_DIR )
+set(LINK_SHAREDLIBS )
+set(LINK_STATICLIBS )
+set(LINK_FLAGS )
+set(TARTYPE EXE) # STATIC SHARED
+
+###########################
+## ----- cmake set ----- ##
+###########################
+
+message("${PROJ_NAME} begin cmake ========>>>>")
+message("${PROJ_NAME} INC_DIR_LIST=" ${INC_DIR_LIST})
+message("${PROJ_NAME} SRC_LIST=" ${SRC_LIST})
+
+## set project
+project(${PROJ_NAME})
+
+## set include dir
+include_directories(${INC_DIR_LIST})
+
+## set link dir
+link_directories(${LINK_DIR})
+
+## set compile opt
+	# add all compiler opt
+add_compile_options(${COMPILEOPT})
+	# add C/C++ compile opt
+	set(CMAKE_C_FLAGS ${CFLAGS})
+	set(CMAKE_CXX_FLAGS ${CXXFLAGS})
+
+## set shared link flag
+set(CMAKE_SHARED_LINKER_FLAGS ${LINK_FLAGS})
+
+## add lib|exe set output
+if("${TARTYPE}" MATCHES "EXE")
+	add_executable(${PROJ_NAME} ${SRC_LIST})
+	set(EXECUTABLE_OUTPUT_PATH ${CMOUT})
+else()
+	add_library(${PROJ_NAME} ${TARTYPE} ${SRC_LIST})
+	set(LIBRARY_OUTPUT_PATH ${CMOUT})
+endif()
+
+## set link libs
+target_link_libraries(${PROJ_NAME} ${LINK_SHAREDLIBS} ${LINK_STATICLIBS})
+
+## --------------------------------------------------------------------------------------- ##
+
+
+## --------------------------------------------------------------------------------------- ##
+## #################################################################### ##
+## --------------------------------------------------------------------------------------- ##
+set(PROJ_NAME pipeserver)
+set(INC_DIR_LIST
+    ${DEVTESTROOT}/pipe
+	)
+set(SRC_LIST
+    ${DEVTESTROOT}/pipe/pipeserver.cpp
+	)
+set(COMPILEOPT -std=c++11)
+set(CFLAGS )
+set(CXXFLAGS )
+set(LINK_DIR )
+set(LINK_SHAREDLIBS )
+set(LINK_STATICLIBS )
+set(LINK_FLAGS )
+set(TARTYPE EXE) # STATIC SHARED EXE
+
+###########################
+## ----- cmake set ----- ##
+###########################
+
+message("${PROJ_NAME} begin cmake ========>>>>")
+message("${PROJ_NAME} INC_DIR_LIST=" ${INC_DIR_LIST})
+message("${PROJ_NAME} SRC_LIST=" ${SRC_LIST})
+
+## set project
+project(${PROJ_NAME})
+
+## set include dir
+include_directories(${INC_DIR_LIST})
+
+## set link dir
+link_directories(${LINK_DIR})
+
+## set compile opt
+	# add all compiler opt
+add_compile_options(${COMPILEOPT})
+	# add C/C++ compile opt
+	set(CMAKE_C_FLAGS ${CFLAGS})
+	set(CMAKE_CXX_FLAGS ${CXXFLAGS})
+
+## set shared link flag
+set(CMAKE_SHARED_LINKER_FLAGS ${LINK_FLAGS})
+
+## add lib|exe set output
+if("${TARTYPE}" MATCHES "EXE")
+	add_executable(${PROJ_NAME} ${SRC_LIST})
+	set(EXECUTABLE_OUTPUT_PATH ${CMOUT})
+else()
+	add_library(${PROJ_NAME} ${TARTYPE} ${SRC_LIST})
+	set(LIBRARY_OUTPUT_PATH ${CMOUT})
+endif()
+
+## set link libs
+target_link_libraries(${PROJ_NAME} ${LINK_SHAREDLIBS} ${LINK_STATICLIBS})
+
+
+## --------------------------------------------------------------------------------------- ##
+
